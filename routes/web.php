@@ -28,6 +28,6 @@ Route::get('/free-zone', 'TestController@guest')->name('free');
 
 Route::get('/restricted-zone', 'TestController@logged', function () {
 
-})->middleware('auth');
+})->middleware('auth')->name('restricted');
 
 
