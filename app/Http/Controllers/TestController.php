@@ -9,13 +9,20 @@ class TestController extends Controller
 {
     public function index() {
         
-        // if (Auth::check()) {
-        //     $user = Auth::user();
+    }
 
-        //     return view('hello', compact('user'));
-        // } 
-        $user = Auth::user();
 
+    public function guest() {
+        $user = 'utente';
         return view('hello', compact('user'));
+
+    }
+
+    public function logged() {
+        
+        $user = Auth::user();
+        $user = $user->name;
+        return view('hello', compact('user'));
+
     }
 }

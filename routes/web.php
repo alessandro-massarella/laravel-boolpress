@@ -22,18 +22,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::prefix('logged')
-//     ->middleware('auth')
-//     ->group(function () {
-//         Route::get('/restricted-zone', 'TestController@index')->name('restricted');
-// });
 
-Route::get('/free-zone', 'TestController@index')->name('free');
+Route::get('/free-zone', 'TestController@guest')->name('free');
 
 
-Route::get('/restricted-zone', 'TestController@index', function () {
+Route::get('/restricted-zone', 'TestController@logged', function () {
 
 })->middleware('auth');
 
-        // Route::get('/restricted-zone', 'TestController@index')->name('restricted');
 
