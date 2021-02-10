@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,3 +32,8 @@ Route::get('/restricted-zone', 'TestController@logged', function () {
 })->middleware('auth')->name('restricted');
 
 
+// Route::get('/posts', 'PostController@index');
+
+// Route::get('/posts/create', 'PostController@create');
+
+Route::resource('posts', 'PostController');

@@ -13,7 +13,7 @@ class Post extends Model
     }
 
     public function postsInformation() {
-        return $this->hasOne('App\PostInformation')
+        return $this->hasOne('App\PostInformation');
     }
 
     public function tag() {
