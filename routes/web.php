@@ -39,3 +39,5 @@ Route::get('/restricted-zone', 'TestController@logged', function () {
 
 Route::resource('posts', 'PostController');
 
+Route::get('/posts', 'IndexController@index');
+
