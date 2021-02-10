@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use App\PostInformation;
+
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts');
+        $posts = Post::all();
+        return view('posts', compact('posts') );
     }
 
     /**
@@ -27,6 +33,7 @@ class PostController extends Controller
     public function create()
     {
         return view('create');
+
     }
 
     /**
@@ -46,7 +53,7 @@ class PostController extends Controller
         $newPost->title = $data['title'];
 
         $newCategory->title = $data['category_id'];
-        $newCategory->slug = 'slug';
+        $newCategory->slug = 'slug';                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
         $newCategory->save();
         $newPost->category_id = $newCategory['id'];
         
@@ -57,12 +64,6 @@ class PostController extends Controller
         $newPostInformation->slug = 'slug';
 
         $newPostInformation->save();
-
-
-
-
-
-
     }
 
     /**

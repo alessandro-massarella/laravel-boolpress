@@ -8,7 +8,7 @@ class Post extends Model
 {
     public $table = 'posts';
     
-    public function categories() {
+    public function category() {
         return $this->belongsTo('App\Category');
     }
 

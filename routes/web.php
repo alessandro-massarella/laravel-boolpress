@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RestrictedController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,3 +38,4 @@ Route::get('/restricted-zone', 'TestController@logged', function () {
 // Route::get('/posts/create', 'PostController@create');
 
 Route::resource('posts', 'PostController');
+
