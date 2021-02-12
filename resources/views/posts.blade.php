@@ -18,6 +18,8 @@
             <th scope="col">Autore</th>
             <th scope="col">Titolo post</th>
             <th scope="col">Categoria</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +29,15 @@
             <td>{{ $post->author}}</td>
             <td>{{ $post->title}}</td>
             <td>{{ $post->category->title }}</td>
+            <td>{{ $post->postsInformation->description}}</td>
+            <td><a href="{{ route('posts.edit', $post->id) }}">edit</a> </td>
+            <td>
+              <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                @csrf
+                @method('delete')
+                <input type="submit" value="Delete" class="btn btn-danger btn-block" onclick="return confirm('Are you sure to delete?')">       
+              </form>
+            </td>
           </tr>
           @endforeach
         </tbody>

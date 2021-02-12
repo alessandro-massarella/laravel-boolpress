@@ -87,7 +87,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('edit', compact('post'));
+
     }
 
     /**
@@ -99,7 +102,30 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $editPost = Post::find($id);
+        $editPostInformation = new PostInformation();
+        $editCategory = new Category();
+
+        $editPost->author = $data['author'];
+        $editPost->title = $data['title'];
+
+        $editCategory->title = $data['category_id'];
+        $editCategory->slug = 'slug';                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        $editCategory->save();
+        $editPost->category_id = $editCategory['id'];
+        
+        $editPost->save();
+
+        $editPostInformation->post_id = $editPost['id'];
+        $editPostInformation->description = $data['description'];
+        $editPostInformation->slug = 'slug';
+
+        $editPostInformation->save();
+
+
+        return redirect('posts');
+ 
     }
 
     /**
@@ -108,8 +134,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        // Category::destroy($id);
+        // PostInformation::destroy($id);
+        // Post::destroy($id);
+
+
+        $post->postsInformation->delete();
+        $post->delete();
+        $post->category->delete();        
+
+        return redirect('posts');
     }
 }
